@@ -1,0 +1,16 @@
+[project]
+name = "rust-fuse"
+version = "0.2.0"
+authors = []
+
+[lib]
+name = "fuse"
+path = "src/lib.rs"
+
+[[bin]]
+name = "hello"
+path = "examples/hello.rs"
+
+[[bin]]
+name = "null"
+path = "examples/null.rs"

@@ -1,0 +1,4 @@
+[root]
+name = "rust-fuse"
+version = "0.2.0"
+
