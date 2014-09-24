@@ -45,7 +45,7 @@ fn mode_from_kind_and_perm (kind: FileType, perm: FilePermission) -> u32 {
 		TypeBlockSpecial => S_IFBLK,
 		TypeSymlink => S_IFLNK,
 		TypeUnknown => 0,
-	}) as u32 | perm.bits()
+	}) | perm.bits()
 }
 
 /// Returns a fuse_attr from FileAttr
@@ -121,8 +121,8 @@ impl<T: Copy> ReplyRaw<T> {
 			unique: self.unique,
 		};
 		as_bytes(&header, |headerbytes| {
-			let sender = self.sender.take_unwrap();
-			sender(Vec::from_slice(headerbytes).append(bytes).as_slice());
+			let sender = self.sender.take().unwrap();
+			sender(headerbytes.to_vec().append(bytes).as_slice());
 		});
 	}
 
